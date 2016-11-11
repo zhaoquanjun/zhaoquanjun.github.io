@@ -1,0 +1,665 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="webpack," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="webpack是继grunt，gulp等之后又一相当火爆的打包编译工具，是模块化的一种解决方案，正是当下最受欢迎的一种生产方式。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Webpack入门">
+<meta property="og:url" content="http://yoursite.com/2016/10/19/webpack入门/index.html">
+<meta property="og:site_name" content="Carlton.blog">
+<meta property="og:description" content="webpack是继grunt，gulp等之后又一相当火爆的打包编译工具，是模块化的一种解决方案，正是当下最受欢迎的一种生产方式。">
+<meta property="og:updated_time" content="2016-10-20T05:36:23.003Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Webpack入门">
+<meta name="twitter:description" content="webpack是继grunt，gulp等之后又一相当火爆的打包编译工具，是模块化的一种解决方案，正是当下最受欢迎的一种生产方式。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/19/webpack入门/"/>
+
+
+  <title> Webpack入门 | Carlton.blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?b88c514d3252493640fbb649d54f8c3b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Carlton.blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">welcome to my blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-主页"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-归档"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-标签"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Webpack入门
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-19T22:39:38+08:00" content="2016-10-19">
+              2016-10-19
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/19/webpack入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/19/webpack入门/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>webpack是继grunt，gulp等之后又一相当火爆的打包编译工具，是模块化的一种解决方案，正是当下最受欢迎的一种生产方式。<br><a id="more"></a></p>
+<h2 id="初始化一个项目"><a href="#初始化一个项目" class="headerlink" title="初始化一个项目"></a>初始化一个项目</h2><p>想要更好的体验webpack的基本功能，最好的方法就是做一个‘例子项目’</p>
+<ol>
+<li><p>创建一个文件夹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir webpack-demo-project</div></pre></td></tr></table></figure>
+</li>
+<li><p>初始化这个项目，建立package.json配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm init -y     //因为只是一个例子项目，直接初始化</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="安装webpack"><a href="#安装webpack" class="headerlink" title="安装webpack"></a>安装webpack</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install webpack --save-dev     //我们直接本地安装，就不考虑全局安装的问题了</div></pre></td></tr></table></figure>
+<h2 id="构建基本的项目结构"><a href="#构建基本的项目结构" class="headerlink" title="构建基本的项目结构"></a>构建基本的项目结构</h2><ol>
+<li><p>新建两个文件夹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir app build</div></pre></td></tr></table></figure>
+</li>
+<li><p>app作为源码存放文件，build作为打包编译好的代码；在app中创建main.js和greeter.js;在build中创建index.html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">touch main.js greeter.js</div></pre></td></tr></table></figure>
+</li>
+<li><p>为webpack添加配置文件 webpack.config.js </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">touch webpack.config.js    //webpack默认会搜索这个名字的文件</div></pre></td></tr></table></figure>
+</li>
+<li><p>为后续会使用的babel创建一个配置文件 .babelrc，并且在里面写入配置配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">&quot;presets&quot;: [&quot;react&quot;, &quot;es2015&quot;],</div><div class="line">  &quot;env&quot;: &#123;</div><div class="line">    &quot;development&quot;: &#123;</div><div class="line">    &quot;plugins&quot;: [[&quot;react-transform&quot;, &#123;</div><div class="line">       &quot;transforms&quot;: [&#123;</div><div class="line">         &quot;transform&quot;: &quot;react-transform-hmr&quot;,</div><div class="line">         &quot;imports&quot;: [&quot;react&quot;],</div><div class="line">         &quot;locals&quot;: [&quot;module&quot;]</div><div class="line">       &#125;]</div><div class="line">     &#125;]]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建一个greeter.json文件,在里面写入内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">  &#123;&quot;text&quot;:&quot;welcome for here&quot;&#125;</div><div class="line">]</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="书写代码，实现基本操作"><a href="#书写代码，实现基本操作" class="headerlink" title="书写代码，实现基本操作"></a>书写代码，实现基本操作</h2><h3 id="为了测试webpack的性能，我们用react来写一点简单的代码"><a href="#为了测试webpack的性能，我们用react来写一点简单的代码" class="headerlink" title="为了测试webpack的性能，我们用react来写一点简单的代码"></a>为了测试webpack的性能，我们用react来写一点简单的代码</h3><ol>
+<li><p>安装react和react-dom；babel、babel-core、babel-loader、babel-preset-es2015、babel-react；其中babel-core 是babel的核心包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install react react-dom babel babel-core babel-loader babel-preset-es2015 babel-preset-react --save-dev</div></pre></td></tr></table></figure>
+</li>
+<li><p>greeter.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">import React, &#123; Component &#125; from &apos;react&apos;;</div><div class="line">import ReactDOM,&#123; render &#125; from &apos;react-dom&apos;;</div><div class="line">import greeter from &apos;../greeter.json&apos;;</div><div class="line">class Example extends Component&#123;</div><div class="line">    render()&#123;</div><div class="line">        return &lt;h3&gt;&#123;greeter.text&#125;&lt;/h3&gt;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">export default Example;</div></pre></td></tr></table></figure>
+</li>
+<li><p>main.js中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">import Example from &apos;./greeter.js&apos;;</div><div class="line">class MyComponent extends Component&#123;</div><div class="line">    render()&#123;</div><div class="line">        return &lt;h1&gt;</div><div class="line">        你好react，webpack;</div><div class="line">        &lt;Example/&gt;</div><div class="line">        &lt;/h1&gt;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>index.html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">    &lt;title&gt;webpack&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;div id=&quot;example&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="为webpack配置-webpack-config-js"><a href="#为webpack配置-webpack-config-js" class="headerlink" title="为webpack配置 webpack.config.js"></a>为webpack配置 webpack.config.js</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">var path = require(&apos;path&apos;);</div><div class="line">var webpack = require(&apos;webpack&apos;);</div><div class="line">var HtmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;);</div><div class="line">var ExtractTextPlugin = require(&apos;extract-text-webpack-plugin&apos;);</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">    devtool: &apos;source-map&apos;,   //配置之后提供了一种对应编译文件和源文件的方法</div><div class="line">    entry: &apos;./app&apos;,  //操作文件的入口</div><div class="line">    output: &#123;        //操作完成后输入的地址</div><div class="line">        path: path.resolve(__dirname,&apos;build&apos;), //输出的目录</div><div class="line">        filename: &apos;[name]-[hash].js&apos;   //输出的文件的名字</div><div class="line">    &#125;,</div><div class="line">    module:&#123;   //模块转化</div><div class="line">        loaders:[</div><div class="line">            &#123;</div><div class="line">                test: /\.json$/ ,</div><div class="line">                loader:&apos;loader-json&apos;</div><div class="line">            &#125;,</div><div class="line">            &#123;</div><div class="line">                test: /\.js$/,</div><div class="line">                exclude: /node_modules/,    //手动排除的文件夹</div><div class="line">                loader: &apos;babel&apos;，</div><div class="line">            &#125;,</div><div class="line">            &#123;</div><div class="line">                test: /\.css$/,</div><div class="line">                loader: ExtractTextPlugin.extract(&apos;style&apos;, &apos;css?modules!postcss&apos;)</div><div class="line">            &#125;</div><div class="line">        ],</div><div class="line">        postcss: [</div><div class="line">            require(&apos;autoprefixer&apos;) //调用了autoprefixer 则css会自动添加不同前缀</div><div class="line">        ],</div><div class="line"></div><div class="line">        plugins: [</div><div class="line">            new HtmlWebpackPlugin(&#123;</div><div class="line">                template: __dirname + &quot;/app/index.tmpl.html&quot;</div><div class="line">            &#125;),</div><div class="line">            new webpack.optimize.OccurenceOrderPlugin(),</div><div class="line">            new webpack.optimize.UglifyJsPlugin(),</div><div class="line">            new ExtractTextPlugin(&quot;[name]-[hash].css&quot;)</div><div class="line">        ]</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="说一下上面的配置问题"><a href="#说一下上面的配置问题" class="headerlink" title="说一下上面的配置问题"></a>说一下上面的配置问题</h3><ol>
+<li><p>对应源码问题<br>Webpack在打包时可以为我们生成的 source maps ，这为我们提供了一种对应编译文件和源文件的方法，使得编译后的代码可读性更高，也更容易调试;而 devtool 是有四个参数可以配置的：source-map 、cheap-module-source-map 、eval-source-map 、cheap-module-eval-source-map；从前到后打包速度越来越快，但是负面作用也越来越多。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">devtool: &apos;source-map&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>babel问题<br>如果没有单独配置 .babelrc 那么在这里配置query也是可以的，不过考虑到需要配置的比较多，最好还是在 .babelrc 中配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">test: /\.js$/,</div><div class="line">exclude: /node_modules/,    //手动排除的文件夹</div><div class="line">loader: &apos;babel&apos;，</div><div class="line">query: &#123;</div><div class="line">         presets: [&apos;es2015&apos;,&apos;react&apos;]</div><div class="line">       &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>css问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">test: /\.css$/,</div><div class="line">loader: &apos;style!css&apos;, </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> 这是基本的css配置，作用就是匹配到css文件然后打包到目录文件中；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">test: /\.css$/,</div><div class="line">loader: &apos;style!css?modules&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> 在后面加上modules之后，那么通过CSS模块，所有的类名，动画名默认都只作用于当前模块，不会造成冲突</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">test: /\.css$/,</div><div class="line">loader: &apos;style!css?modules!postcss&apos;</div><div class="line">&#125;,</div><div class="line">&#123;</div><div class="line"> postcss: [</div><div class="line">    require(&apos;autoprefixer&apos;)//调用autoprefixer插件</div><div class="line">  ],</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> 增加了postcss后会自动为css添加不同浏览器需要的前缀</p>
+</li>
+<li><p>构建本地服务器<br>想不想让你的浏览器监测你都代码的修改，并自动刷新修改后的结果，其实Webpack提供一个可选的本地开发服务器，这个本地服务器基于node.js构建，可以实现你想要的这些功能，不过它是一个单独的组件，在webpack中进行配置之前需要单独安装它作为项目依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save-dev webpack-dev-server</div></pre></td></tr></table></figure>
+<p> 参数有：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">devServer: &#123;</div><div class="line">    contentBase: &quot;./build&quot;,//本地服务器所加载的页面所在的目录</div><div class="line">    port：&quot;5050&quot;,  //设置本地端口，默认是8080</div><div class="line">    colors: true,//终端中输出结果为彩色</div><div class="line">    historyApiFallback: true,//不跳转</div><div class="line">    inline: true//实时刷新（源文件改变就刷新）</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>插件plugins<br>插件的使用就比较简单了，有什么需求对应的使用npm下载，然后在plugins中new一个实例并且传入参数就可以了</p>
+</li>
+</ol>
+<h2 id="配置package-json"><a href="#配置package-json" class="headerlink" title="配置package.json"></a>配置package.json</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;name&quot;: &quot;webpack-sample-project&quot;,</div><div class="line">  &quot;version&quot;: &quot;1.0.0&quot;,</div><div class="line">  &quot;description&quot;: &quot;Sample webpack project&quot;,</div><div class="line">  &quot;scripts&quot;: &#123;</div><div class="line">    &quot;start&quot;: &quot;webpack&quot;,</div><div class="line">    &quot;dev&quot;: &quot;webpack-dev-server --progress&quot;,</div><div class="line">    &quot;build&quot;: &quot;NODE_ENV=production webpack --config ./webpack.production.config.js --progress&quot;</div><div class="line">  &#125;,</div><div class="line">  &quot;author&quot;: &quot;Carlton&quot;,</div><div class="line">  &quot;license&quot;: &quot;ISC&quot;,</div><div class="line">  &quot;devDependencies&quot;: &#123;...&#125;,</div><div class="line">  &quot;dependencies&quot;: &#123;...&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>以上知识webpack入门的最基础的知识，不过有了这些基础之后就可以继续深入学习了</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/webpack/" rel="tag">#webpack</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/12/canvas基础入门/" rel="next" title="Canvas基础入门">
+                <i class="fa fa-chevron-left"></i> Canvas基础入门
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/19/webpack入门/"
+           data-title="Webpack入门" data-url="http://yoursite.com/2016/10/19/webpack入门/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Carlton" />
+          <p class="site-author-name" itemprop="name">Carlton</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化一个项目"><span class="nav-number">1.</span> <span class="nav-text">初始化一个项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装webpack"><span class="nav-number">2.</span> <span class="nav-text">安装webpack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建基本的项目结构"><span class="nav-number">3.</span> <span class="nav-text">构建基本的项目结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#书写代码，实现基本操作"><span class="nav-number">4.</span> <span class="nav-text">书写代码，实现基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为了测试webpack的性能，我们用react来写一点简单的代码"><span class="nav-number">4.1.</span> <span class="nav-text">为了测试webpack的性能，我们用react来写一点简单的代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为webpack配置-webpack-config-js"><span class="nav-number">5.</span> <span class="nav-text">为webpack配置 webpack.config.js</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#说一下上面的配置问题"><span class="nav-number">5.1.</span> <span class="nav-text">说一下上面的配置问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置package-json"><span class="nav-number">6.</span> <span class="nav-text">配置package.json</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">7.</span> <span class="nav-text">小结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Carlton</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"quanjun-carlton"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

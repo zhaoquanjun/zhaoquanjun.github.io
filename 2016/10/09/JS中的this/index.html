@@ -1,0 +1,675 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="tip在js中，this这个上下文总是变化莫测，很多时候出现bug总是一头雾水，其实，只要分清楚不同情况下执行就ok了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS中的this">
+<meta property="og:url" content="http://yoursite.com/2016/10/09/JS中的this/index.html">
+<meta property="og:site_name" content="Carlton.blog">
+<meta property="og:description" content="tip在js中，this这个上下文总是变化莫测，很多时候出现bug总是一头雾水，其实，只要分清楚不同情况下执行就ok了">
+<meta property="og:updated_time" content="2016-10-10T08:52:09.296Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS中的this">
+<meta name="twitter:description" content="tip在js中，this这个上下文总是变化莫测，很多时候出现bug总是一头雾水，其实，只要分清楚不同情况下执行就ok了">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/09/JS中的this/"/>
+
+
+  <title> JS中的this | Carlton.blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?b88c514d3252493640fbb649d54f8c3b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Carlton.blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">welcome to my blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-主页"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-归档"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-标签"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JS中的this
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-09T23:33:46+08:00" content="2016-10-09">
+              2016-10-09
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/09/JS中的this/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/09/JS中的this/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="tip"><a href="#tip" class="headerlink" title="tip"></a>tip</h2><pre><code>在js中，this这个上下文总是变化莫测，很多时候出现bug总是一头雾水，其实，只要分清楚不同情况下执行就ok了
+</code></pre><hr>
+<a id="more"></a>
+<h2 id="全局执行"><a href="#全局执行" class="headerlink" title="全局执行"></a>全局执行</h2><ol>
+<li><p>在浏览器下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">console.log(this);   // Window &#123;speechSynthesis: SpeechSynthesis, caches: CacheStorage, localStorage: Storage, sessionStorage: Storage, webkitStorageInfo: DeprecatedStorageInfo…&#125;</div></pre></td></tr></table></figure>
+<p> 可以才看出在浏览器下打印出了window</p>
+</li>
+<li><p>在node环境下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">console.log(this);   //global</div></pre></td></tr></table></figure>
+<p> 在node环境下打印出了global<br>总结：在全局作用域中它的 this 执行是当前的全局对象（浏览器端是 Window，node 中是 global）</p>
+</li>
+</ol>
+<hr>
+<h2 id="函数中执行"><a href="#函数中执行" class="headerlink" title="函数中执行"></a>函数中执行</h2><ol>
+<li><p>纯粹的函数调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">function test()&#123;console.log(this)&#125;</div><div class="line">test(); //这是最普通的函数调用方法了   ---&gt;结果是window</div></pre></td></tr></table></figure>
+<p> 可以看到，一个函数被直接调用的时候，属于全局调用，这时候它的 this 指向全局对象</p>
+</li>
+<li><p>严格模式 “use strict”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&quot;use strict&quot;;</div><div class="line">function test()&#123;</div><div class="line">    console.log(this);</div><div class="line">&#125;</div><div class="line">test();         //  ---&gt; undefined</div></pre></td></tr></table></figure>
+<p> 如果在严格模式的情况下执行纯粹的函数调用，那么这里的的this并不会指向全局，而是 undefined，这样的做法是为了消除 js 中一些不严谨的行为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(function test()&#123;</div><div class="line">    &quot;use strict&quot;;</div><div class="line">    console.log(this);</div><div class="line">&#125;)();          // ---&gt; undefined</div></pre></td></tr></table></figure>
+<p> 当然，把它放在一个立即执行函数中会更好，避免了污染全局</p>
+</li>
+<li><p>作为对象的方法调用<br>当一个函数被当作一个对象的方法调用的时候：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">    name:&apos;Carlton,&apos;</div><div class="line">    foo:function()&#123;console.log(this.name)&#125;</div><div class="line">&#125;</div><div class="line">obj.foo();     // ---&gt; Carlton</div></pre></td></tr></table></figure>
+<p> 这个时候this指向的是当前的这个obj对象<br><strong>当然，还可以这么做：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function test()&#123;console.log(this.name)&#125;;</div><div class="line">var obj = &#123;</div><div class="line">    name:&apos;Carlton&apos;,</div><div class="line">    foo:test</div><div class="line">&#125;</div><div class="line">obj.foo();    // ---&gt; Carlton</div></pre></td></tr></table></figure>
+<p> 因为在js中一切都是对象，函数也是一个对象,对于test，它只是一个函数名，函数的引用，它指向这个函数，当 foo = test，foo同样也指向了这个函数，因此相当于将test赋值给了obj的foo属性，那么this依然是obj这个对象。<br><strong>如果把对象的方法赋值给一个变量，然后直接调用这个变量呢：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">    name:&apos;Carlton&apos;,</div><div class="line">    foo:function()&#123;console.log(this)&#125;</div><div class="line">&#125;</div><div class="line">var test = obj.foo;</div><div class="line">test();       // ---&gt; window</div></pre></td></tr></table></figure>
+<p> 可以看到，这时候this执行了全局，当我们把 test = obj.foo ，test 直接指向了一个函数的引用，这时候，其实和 obj 这个对象没有关系了，它是被当作一个普通函数来直接调用，因此，this 指向全局对象。</p>
+</li>
+<li><p>一些坑<br>经常会在回掉函数中遇到的一些坑：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">  name: &apos;Carlton&apos;,</div><div class="line">  foo: function() &#123;</div><div class="line">    console.log(this);</div><div class="line">  &#125;,</div><div class="line">  foo2: function() &#123;</div><div class="line">    console.log(this);</div><div class="line">    setTimeout(this.foo, 1000);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">obj.foo2();</div></pre></td></tr></table></figure>
+<p> <strong>执行这段代码我们会发现两次打印出来的 this 是不一样的：</strong><br> 第一次是 foo2 中直接打印 this，这里指向 obj 这个对象，我们毋庸置疑；但是在 setTimeout 中执行的 this.foo，却指向了全局对象，这里不是把它当作函数的方法,这一点经常让很多初学者疑惑；其实，setTimeout 也只是一个函数而已，函数必然有可能需要参数，我们把 this.foo 当作一个参数传给 setTimeout 这个函数，就像它需要一个 fun 参数，在传入参数的时候，其实做了个这样的操作 fun = this.foo，这里我们直接把 fun 指向 this.foo 的引用；执行的时候其实是执行了 fun() ,他已经成为了全局的一个变量，所以已经和 obj 无关了，它是被当作普通函数直接调用的，因此 this 指向全局对象。<br>_这个问题是很多异步回调函数中普遍会碰到的；<br><strong>解决：</strong><br>为了解决这个问题，我们可以利用保存this指针的的方法来处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">  name: &apos;Carlton&apos;,</div><div class="line">  foo: function() &#123;</div><div class="line">    console.log(this);</div><div class="line">  &#125;,</div><div class="line">  foo2: function() &#123;</div><div class="line">    console.log(this);</div><div class="line">    var _this = this;</div><div class="line">    setTimeout(function() &#123;</div><div class="line">      console.log(this);  // ---&gt; Window</div><div class="line"></div><div class="line">      console.log(_this);  // ---&gt; obj &#123;name: &quot;Carlton&quot;&#125;</div><div class="line">    &#125;, 1000);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">obj.foo2();</div></pre></td></tr></table></figure>
+<p> 可以看到直接用 this 仍然是 Window；因为 foo2 中的 this 是指向 obj，我们可以先用一个变量 _this 来储存，然后在回调函数中使用 _this，就可以指向当前的这个对象了。</p>
+</li>
+</ol>
+<hr>
+<ol>
+<li><p>setTimeout 的另一个坑<br>之前说过，如果直接执行回调函数而没有绑定作用域，那么它的 this 是指向全局对象(window)，在严格模式下会指向 undefined，然而在 setTimeout 中的回调函数在严格模式下却表现出不同：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&apos;use strict&apos;;</div><div class="line">function foo() &#123;</div><div class="line">  console.log(this);</div><div class="line">&#125;</div><div class="line">setTimeout(foo, 1);         // ---&gt; window</div></pre></td></tr></table></figure>
+<p> 按理说我们加了严格模式，foo 调用也没有指定 this，应该是出来 undefined，但是这里仍然出现了全局对象，难道是严格模式失效了吗？并不，即使在严格模式下，setTimeout 方法在调用传入函数的时候，如果这个函数没有指定了的 this，那么它会做一个隐式的操作—-自动地注入全局上下文，等同于调用 foo.apply(window) 而非 foo()；当然，如果我们在传入函数的时候已经指定 this，那么就不会被注入全局对象，比如： setTimeout(foo.bind(obj));   —&gt; obj</p>
+</li>
+<li><p>作为一个构造函数使用<br>在 js 中，为了实现类，我们需要定义一些构造函数，在调用一个构造函数的时候需要加上 new 这个关键字：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function Person(name) &#123;</div><div class="line">  this.name = name;</div><div class="line">  console.log(this);</div><div class="line">&#125;</div><div class="line">var p = new Person(&apos;Carlton&apos;);   // ---&gt; Person &#123;name: &quot;Carlton&quot;&#125;</div></pre></td></tr></table></figure>
+<p> 我们可以看到当作构造函数调用时，this 指向了这个构造函数调用时候实例化出来的对象<br>当然，构造函数其实也是一个函数，如果我们把它当作一个普通函数执行，这个 this 仍然执行全局：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function Person(name) &#123;</div><div class="line">  this.name = name;</div><div class="line">  console.log(this);</div><div class="line">&#125;</div><div class="line">var p = Person(&apos;qiutc&apos;);          // ---&gt; Window</div></pre></td></tr></table></figure>
+<p> 其区别在于，如何调用函数（new）</p>
+</li>
+<li><p>箭头函数<br>在 ES6 的新规范中，加入了箭头函数，它和普通函数最不一样的一点就是 this 的指向了，还记得在上文中（作为对象的方法调用-一些坑-解决）我们使用保存变量来解决 this 的指向问题吗，如果用上了箭头函数就可以更完美的解决了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">  name: &apos;Carlton&apos;,</div><div class="line">  foo: function() &#123;</div><div class="line">    console.log(this);</div><div class="line">  &#125;,</div><div class="line">  foo2: function() &#123;</div><div class="line">    console.log(this);</div><div class="line">    setTimeout(() =&gt; &#123;</div><div class="line">      console.log(this);       // ---&gt; obj &#123;name: &quot;Carlton&quot;&#125;</div><div class="line">    &#125;, 1000);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">obj.foo2();</div></pre></td></tr></table></figure>
+<p> 可以看到，在 setTimeout 执行的函数中，本应该打印出在 Window，但是在这里 this 却指向了obj，原因就在于，给 setTimeout 传入的函数（参数）是一个箭头函数;函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象<br>根据例子我们理解一下这句话：<br>在 obj.foo2() 执行的时候，当前的 this 指向 obj；在执行 setTimeout 时候，我们先是定义了一个匿名的箭头函数，关键点就在这，箭头函数内的 this 执行定义时所在的对象，就是指向定义这个箭头函数时作用域内的 this，也就是 obj.foo2 中的 this，即 obj；所以在执行箭头函数的时候，它的 this -&gt; obj.foo2 中的 this -&gt; obj；简单来说， 箭头函数中的 this 只和定义它时候的作用域的 this 有关，而与在哪里以及如何调用它无关，同时它的 this 指向是不可改变的</p>
+</li>
+<li><p>call, apply, bind<br>在 js 中，函数也是对象，同样也有一些方法，这里我们介绍三个方法，他们可以更改函数中的 this 指向</p>
+<ol>
+<li><p>call:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fun.call(obj,a)</div></pre></td></tr></table></figure>
+<p>它会立即执行函数，第一个参数是指定执行函数中 this 的上下文，后面的参数是执行函数需要传入的参数；</p>
+</li>
+<li><p>apply</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fun.apply(thisArg,[ary1,ary2,...])</div></pre></td></tr></table></figure>
+<p>它会立即执行函数，第一个参数是指定执行函数中 this 的上下文，第二个参数是一个数组，是传给执行函数的参数（与 call 的区别）；</p>
+</li>
+<li><p>bind</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var foo = fun.bind(thisArg,a);</div></pre></td></tr></table></figure>
+<p>它不会执行函数，而是返回一个新的函数，这个新的函数被指定了 this 的上下文，后面的参数是执行函数需要传入的参数；<br>总结：call,apply,bind三个都可以改变this指向，区别就是call,apply改变后就立刻执行函数了，而bind不会，需要手动去执行，call和apply的区别就是传入的参数不同，call传入普通参数，而apply传入的是一个数组</p>
+</li>
+</ol>
+</li>
+</ol>
+<hr>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JS/" rel="tag">#JS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/09/前端基础知识/" rel="next" title="前端基础知识">
+                <i class="fa fa-chevron-left"></i> 前端基础知识
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/12/canvas基础入门/" rel="prev" title="Canvas基础入门">
+                Canvas基础入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/09/JS中的this/"
+           data-title="JS中的this" data-url="http://yoursite.com/2016/10/09/JS中的this/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Carlton" />
+          <p class="site-author-name" itemprop="name">Carlton</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tip"><span class="nav-number">1.</span> <span class="nav-text">tip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全局执行"><span class="nav-number">2.</span> <span class="nav-text">全局执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数中执行"><span class="nav-number">3.</span> <span class="nav-text">函数中执行</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Carlton</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"quanjun-carlton"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

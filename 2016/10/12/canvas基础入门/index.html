@@ -1,0 +1,641 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="canvas," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="简单说一下H5新增加的动画canvas的入门基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Canvas基础入门">
+<meta property="og:url" content="http://yoursite.com/2016/10/12/canvas基础入门/index.html">
+<meta property="og:site_name" content="Carlton.blog">
+<meta property="og:description" content="简单说一下H5新增加的动画canvas的入门基础">
+<meta property="og:updated_time" content="2016-10-12T05:02:42.307Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Canvas基础入门">
+<meta name="twitter:description" content="简单说一下H5新增加的动画canvas的入门基础">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/12/canvas基础入门/"/>
+
+
+  <title> Canvas基础入门 | Carlton.blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?b88c514d3252493640fbb649d54f8c3b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Carlton.blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">welcome to my blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-主页"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-归档"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-标签"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Canvas基础入门
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-12T11:58:08+08:00" content="2016-10-12">
+              2016-10-12
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/12/canvas基础入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/canvas基础入门/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>简单说一下H5新增加的动画canvas的入门基础<br><a id="more"></a></p>
+<h2 id="canvas起步"><a href="#canvas起步" class="headerlink" title="canvas起步"></a>canvas起步</h2><p>canvas元素就是一块画布，就是你提笔挥洒写意的地方。从标记的角度看，他简单明了，只要给他指定三个属性即可：id , width 和 height<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;canvas id=&quot;drawingCanvas&quot; width=&quot;500px&quot; height=&quot;500px&quot;&gt;</div></pre></td></tr></table></figure></p>
+<p>其中id是一个唯一的名字，javascript脚本可以利用他找到这块画布。相应的，width和height属性指定的就是这块画布的宽度和高度，单位是像素”px”</p>
+<p>开始的时候， canvas 在页面上是一片空白、无边框的矩形，你是看不到他的。为了让他在页面上显示出来，可以给他背景颜色或者是边框<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">canvas&#123;</div><div class="line">    border:1px solid #ccc;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>找到了这块画布之后，那么就进行简单的绘制</p>
+<h2 id="绘制直线"><a href="#绘制直线" class="headerlink" title="绘制直线"></a>绘制直线</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">    &lt;title&gt;直线&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;style&gt;</div><div class="line">    canvas &#123;</div><div class="line">        border: 1px dashed black;</div><div class="line">    &#125;</div><div class="line">&lt;/style&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;!--canvas的必备三要素：id、宽、高--&gt;</div><div class="line">&lt;canvas id=&quot;drawing&quot; width=&quot;500px&quot; height=&quot;200px&quot;&gt;&lt;/canvas&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">    var canvas = document.getElementById(&apos;drawing&apos;);//获取canvas</div><div class="line">    var context = canvas.getContext(&apos;2d&apos;);//获取canvas上下文</div><div class="line">    context.moveTo(10,10);//指定起点</div><div class="line">    context.lineTo(300,30);//指定终点</div><div class="line">    context.lineWidth=10;//设置线宽</div><div class="line">    context.strokeStyle=&apos;green&apos;;//指定线条填充颜色</div><div class="line">    context.lineCap=&apos;round&apos;;//指定线头的形状：butt -&gt; 方头 ； round -&gt; 圆头 ； square -&gt; 方头； （后两个都多个半个线宽的长度）</div><div class="line">    context.stroke(); //绘制直线执行</div><div class="line">    context.beginPath();//停止当前的绘制，开始绘制吓一条；相当于就是改变了路径</div><div class="line">    context.moveTo(20,180);</div><div class="line">    context.lineTo(390,90);</div><div class="line">    context.lineWidth=8;</div><div class="line">    context.strokeStyle=&apos;blue&apos;;</div><div class="line">    context.lineCap=&apos;square&apos;;</div><div class="line">    context.stroke();</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<ol>
+<li>在上面的代码中，通过javascript代码var canvas = document.getElementById(‘drawing’);先获取到这块画布的区域便于后面对他进行操作</li>
+<li>然后获取他的上下文var context = canvas.getContext(‘2d’);这是必须的，只有获取到了上下文才能在后续的步骤中对他进行绘图操作（当然获取的是二维的上下文）。</li>
+<li>通过context.moveTo(10,10);对他进行起点定位，也就是你绘图时候的起点，下笔的地方。</li>
+<li>context.lineTo(300,30); 指定绘图的终点，也就是说其实就是在（10，10）和（300,300）这两个点之间绘制出了一条直线</li>
+<li>绘制出直线后可以认为的对他的一些属性进行设置;<ol>
+<li>context.lineWidth=10; 设置线宽为10px;</li>
+<li>context.strokeStyle=’green’; 指定线条的颜色为绿色</li>
+<li>context.lineCap=’round’; 指定线头的样式为round；他有三种样式：butt -&gt; 方头 ； round -&gt; 圆头 ； square -&gt; 加长方头；（butt和square类似，但是square会在线头两边各加线宽一半的长度，也就是说用square绘制完成后要比实际两点之间的尺寸大一个线宽）</li>
+</ol>
+</li>
+<li>context.stroke(); 最后一步，绘制出直线，只有执行了这一步之后，这条直线才会呈现在画布上，也就是说如果不加其他的样式，那么绘制执行的三部曲操作是：<ol>
+<li>context.moveTo(10,10); 绘制起点</li>
+<li>context.lineTo(300,30); 绘制终点</li>
+<li>context.stroke(); 强直线呈现在画布上</li>
+</ol>
+</li>
+<li>当我们绘制完成一条直线之后，如果想要接着绘制吓一条，那么首先需要停止当前的绘制：context.beginPath(); 相当于改变的路径，接下来就可以继续上面的三部曲：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">context.moveTo(20,180);</div><div class="line">context.lineTo(390,90);</div><div class="line">context.lineWidth=8;</div><div class="line">context.strokeStyle=&apos;blue&apos;;</div><div class="line">context.lineCap=&apos;square&apos;;</div><div class="line">context.stroke();</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这样就绘制好了两条直线</p>
+<h2 id="绘制矩形"><a href="#绘制矩形" class="headerlink" title="绘制矩形"></a>绘制矩形</h2><p>绘制完成直线之后我们开始矩形的绘制<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">    &lt;title&gt;矩形&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;canvas id=&quot;drawing&quot; width=&quot;1000px&quot; height=&quot;400px&quot;&gt;&lt;/canvas&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">    var canvas = document.getElementById(&apos;drawing&apos;);</div><div class="line">    var context = canvas.getContext(&apos;2d&apos;);</div><div class="line">    context.fillStyle=&apos;blue&apos;;</div><div class="line">    context.fillRect(100,100,200,400); //直接绘制一个矩形，不过只是填充了而并没有边框</div><div class="line">    context.lineWidth=3;</div><div class="line">    context.strokeStyle=&apos;green&apos;;</div><div class="line">    context.strokeRect(10,10,100,200); //直接绘制了矩形，但是没有填充</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<p>绘制矩形的方法比较简单，可以一步完成：context.fillRect(100,100,200,400)；<br>接下来可以为矩形添加一些样式：</p>
+<pre><code>1. context.fillStyle=&apos;blue&apos;; 想要为矩形添加背景色，也就是填充色就需要用到fillStyle这个属性
+2. context.lineWidth=3; 仍然通过lineWidth为他指定线宽
+</code></pre><h2 id="绘制曲线"><a href="#绘制曲线" class="headerlink" title="绘制曲线"></a>绘制曲线</h2><p>绘制曲线有四个方法：arc(); artTo(); bezierCurveTo(); quadraticCurveTo() ;  其中arc()是最简单的，他可以绘制一段圆弧；但是他最多只能画出圆而不能实现椭圆，要想画出椭圆需要其他复杂的方法或者是使用变换将圆拉伸成椭圆<br> 其他的三种方法需要接触一个新的参数，那就是控制点，他不包括在曲线当中，但是却影响曲线，他是曲线的起点和终点的切线方向，距离起点和终点的距离越大，那么曲线的弯曲程度就越大<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">var canvas = document.getElementById(&apos;drawing&apos;);</div><div class="line">var context = canvas.getContext(&apos;2d&apos;);</div><div class="line">//绘制圆弧需要的参数</div><div class="line">var contextX=150;</div><div class="line">var contextY= 300;</div><div class="line">var radius = 100;</div><div class="line">var startingAngle = 1.25*Math.PI;</div><div class="line">var endingAngle = 1.95*Math.PI;</div><div class="line">//使用确定的信息绘制圆弧，一共5个参数</div><div class="line">context.arc(contextX,contextY,radius,startingAngle,endingAngle);</div><div class="line">context.lineWidth=10;</div><div class="line">context.strokeStyle=&apos;pink&apos;;</div><div class="line">//如果在调用stroke之前调用了closePath，那么会在起点和终点之间连接一条线，形成一个闭合的小半圆</div><div class="line">context.closePath();</div><div class="line">context.stroke();</div></pre></td></tr></table></figure></p>
+<p>绘制曲线一共需要5个参数 contextX , contextY  radius , startingAngle , endingAngle ；当确定好这5个参数之后，使用arc方法就可以绘制出这条曲线： context.arc(contextX,contextY,radius,startingAngle,endingAngle);上面的是一个半圆；如果想要形成一个闭合的半圆，那么就需要一个新的步骤，那就是在 context.stroke(); 绘制完成之前加入 context.closePath();这样会在起点和终点之间连接一条线，形成一个闭合的小半圆</p>
+<h2 id="变换"><a href="#变换" class="headerlink" title="变换"></a>变换</h2><p>如果想要绘制三个正方形，可以一步一步的绘制：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">context.rect(0,0,50,50) //在（0,0）点绘制了一个边长为50的正方形</div><div class="line">context.rect(50,50,50,50) //在（50,50）点绘制了一个边长为50的正方形</div><div class="line">context.rect(100,100,50,50) //在（100,100）点绘制了一个边长为50的正方形</div></pre></td></tr></table></figure></p>
+<p>或者可以通过变换：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">context.rect(0,0,50,50) //在（0,0）点绘制了一个边长为50的正方形</div><div class="line">context.translate(50,50)  //相当于将起始点移动到了（50,50）这个点上</div><div class="line">context.rect(0,0,50,50)  //又绘制了一个边长为50的正方形</div><div class="line">context.translate(50,50)  //相当于将起点移动到了（100,100）这个点上</div><div class="line">context.rect(0,0,50,50)  //又绘制了一个边长为50的正方形</div></pre></td></tr></table></figure></p>
+<p>上面两种方法绘制出的图形是一模一样的，这就是 canvas 的变换</p>
+<h2 id="制作一个像window那样的绘画程序"><a href="#制作一个像window那样的绘画程序" class="headerlink" title="制作一个像window那样的绘画程序"></a>制作一个像window那样的绘画程序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;!--saved from url=(0014)about:internet--&gt;</div><div class="line">    &lt;!--[if it IE9]&gt;</div><div class="line">    &lt;script src=&quot;html5.js.js&quot;&gt;&lt;/script&gt;</div><div class="line">    &lt;![endif]--&gt;</div><div class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">    &lt;title&gt;绘图程序&lt;/title&gt;</div><div class="line">    &lt;style type=&quot;text/css&quot;&gt;</div><div class="line">        #drawing&#123;</div><div class="line">            margin-left: 30px;</div><div class="line">            border:1px solid black;</div><div class="line">        &#125;</div><div class="line">        .btnGreen&#123;</div><div class="line">            position: absolute;</div><div class="line">            top:30px;</div><div class="line">            left:60px;</div><div class="line">            width:40px;</div><div class="line">            height:35px;</div><div class="line">            background-color: green;</div><div class="line">            cursor: pointer;</div><div class="line">            border-radius:50%;</div><div class="line">        &#125;</div><div class="line">        .btnRed&#123;</div><div class="line">            position: absolute;</div><div class="line">            top:30px;</div><div class="line">            left:120px;</div><div class="line">            width:40px;</div><div class="line">            height:35px;</div><div class="line">            background-color: red;</div><div class="line">            cursor: pointer;</div><div class="line">            border-radius:50%;</div><div class="line">        &#125;</div><div class="line">        .clear&#123;</div><div class="line">            position: absolute;</div><div class="line">            left:660px;</div><div class="line">            top: 300px;</div><div class="line">            width:40px;</div><div class="line">            height:35px;</div><div class="line">            border-radius: 50%;</div><div class="line">            background: -webkit-radial-gradient(circle,greenyellow,green);</div><div class="line">        &#125;</div><div class="line">        p&#123;</div><div class="line">            position: absolute;</div><div class="line">            top:323px;</div><div class="line">            left:665px;</div><div class="line">        &#125;</div><div class="line">    &lt;/style&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;canvas id=&quot;drawing&quot; width=&quot;800px&quot; height=&quot;350&quot;&gt;&lt;/canvas&gt;</div><div class="line">&lt;div class=&quot;toolBtn&quot;&gt;</div><div class="line">    &lt;div class=&quot;btnGreen&quot; onclick=&quot;changeColor(&apos;rgb(130,190,61)&apos;)&quot;&gt;&lt;/div&gt;</div><div class="line">    &lt;div class=&quot;btnRed&quot; onclick=&quot;changeColor(&apos;rgb(212,21,29)&apos;)&quot;&gt;&lt;/div&gt;</div><div class="line">    &lt;div class=&quot;clear&quot; onclick=&quot;clearCanvas()&quot;&gt;&lt;/div&gt;</div><div class="line">    &lt;p&gt;清除&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">    var canvas, context;</div><div class="line">    window.onload= function () &#123;</div><div class="line">        canvas = document.getElementById(&apos;drawing&apos;);</div><div class="line">        context = canvas.getContext(&apos;2d&apos;);</div><div class="line">        //添加用于实现绘图操作的函数</div><div class="line">        canvas.onmousedown=startDrawing;</div><div class="line">        canvas.onmouseup = stopDrawing;</div><div class="line">        canvas.onmouseout = stopDrawing;</div><div class="line">        canvas.onmousemove = drawing;</div><div class="line">    &#125;;</div><div class="line">    var previousColorElement;</div><div class="line">    function changeColor(color,ele)&#123;</div><div class="line">        context.strokeStyle = color;</div><div class="line">       // ele.className=&apos;Selected&apos;;</div><div class="line">        if(previousColorElement!=null)&#123;</div><div class="line">            previousColorElement=&apos;&apos;;</div><div class="line">        &#125;else&#123;</div><div class="line">            previousColorElement=ele;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    var isDrawing=false;</div><div class="line">    function startDrawing(e)&#123;</div><div class="line">        isDrawing = true;</div><div class="line">        context.beginPath();</div><div class="line">        context.moveTo(e.pageX-canvas.offsetLeft, e.pageY-canvas.offsetTop);</div><div class="line">    &#125;</div><div class="line">    function drawing(e)&#123;</div><div class="line">        if(isDrawing==true)&#123;</div><div class="line">            var x= e.pageX-canvas.offsetLeft;</div><div class="line">            var y = e.pageY-canvas.offsetTop;</div><div class="line">            context.lineTo(x,y);</div><div class="line">            context.stroke();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    function stopDrawing(e)&#123;</div><div class="line">        isDrawing = false;</div><div class="line">    &#125;</div><div class="line">    function clearCanvas()&#123;</div><div class="line">        context.clearRect(0,0,canvas.width,canvas.height);</div><div class="line">    &#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>上面的操作中完成了一个简单的绘图程序，包括两只不同颜色的画笔，和一个清除按钮；并且定义了鼠标动作的四个参数：鼠标按下，鼠标放开，鼠标移动和鼠标移开绘画区域的动作函数（这个是基础的javascript知识）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">canvas.onmousedown=startDrawing;</div><div class="line">canvas.onmouseup = stopDrawing;</div><div class="line">canvas.onmouseout = stopDrawing;</div><div class="line">canvas.onmousemove = drawing;</div></pre></td></tr></table></figure></p>
+<p>完成以上代码之后就可以进行简单绘制了，当然以上的只是一些最简陋的功能，如果有兴趣可以接着进行拓展，包括画笔的线宽，图片的保存等等功能，利用 canvas 的一些最基本的功能，就能完成一些简单的绘图操作了</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>以上等等都是 canvas 的一些最基础的入门操作，方便最快的了解 canvas 这个高大上的只是概念基础，如果想要深入研究，推荐到网上查看一些更加详细的资料或者通过”HTML5秘籍第二版这本书，也可以有一个基本深入的了解”</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/canvas/" rel="tag">#canvas</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/09/JS中的this/" rel="next" title="JS中的this">
+                <i class="fa fa-chevron-left"></i> JS中的this
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/19/webpack入门/" rel="prev" title="Webpack入门">
+                Webpack入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/12/canvas基础入门/"
+           data-title="Canvas基础入门" data-url="http://yoursite.com/2016/10/12/canvas基础入门/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Carlton" />
+          <p class="site-author-name" itemprop="name">Carlton</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#canvas起步"><span class="nav-number">1.</span> <span class="nav-text">canvas起步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绘制直线"><span class="nav-number">2.</span> <span class="nav-text">绘制直线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绘制矩形"><span class="nav-number">3.</span> <span class="nav-text">绘制矩形</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绘制曲线"><span class="nav-number">4.</span> <span class="nav-text">绘制曲线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变换"><span class="nav-number">5.</span> <span class="nav-text">变换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#制作一个像window那样的绘画程序"><span class="nav-number">6.</span> <span class="nav-text">制作一个像window那样的绘画程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">7.</span> <span class="nav-text">小结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Carlton</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"quanjun-carlton"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
