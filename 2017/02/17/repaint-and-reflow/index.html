@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="hexo," />
+  <meta name="keywords" content="重绘和回流," />
 
 
 
@@ -84,16 +84,22 @@
 
 
 
-<meta name="description" content="The thought of creating the blog 第一次使用hexo搭建博客，虽然是在大牛搭用nodejs搭建好的壳子上去做，但是比较笨的我还是遇到了一些麻烦，在这记录一下，防止自己或者别人犯同样的错误。">
+<meta name="description" content="回流和重绘是两种不同的机制，会样式的改变而对浏览器产生不同程度的影响。
+概念1、回流：当render tree中的一部分（全部）因为元素的规模尺寸、布局、隐藏等改变而需要重新的构建，这就叫做回流；每个页面至少需要一次回流，就是在页面第一次加载的时候。2、重绘：当render tree中的一些元素需要更新属性，而这些属性只会影响元素的外观、风格而不会影响布局的，过程就叫做重绘。
+web页面的呈现ht">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/2016/10/01/thought/index.html">
+<meta property="og:title" content="Repaint and Reflow">
+<meta property="og:url" content="http://yoursite.com/2017/02/17/repaint-and-reflow/index.html">
 <meta property="og:site_name" content="Carlton.blog">
-<meta property="og:description" content="The thought of creating the blog 第一次使用hexo搭建博客，虽然是在大牛搭用nodejs搭建好的壳子上去做，但是比较笨的我还是遇到了一些麻烦，在这记录一下，防止自己或者别人犯同样的错误。">
-<meta property="og:updated_time" content="2016-10-20T05:41:53.291Z">
+<meta property="og:description" content="回流和重绘是两种不同的机制，会样式的改变而对浏览器产生不同程度的影响。
+概念1、回流：当render tree中的一部分（全部）因为元素的规模尺寸、布局、隐藏等改变而需要重新的构建，这就叫做回流；每个页面至少需要一次回流，就是在页面第一次加载的时候。2、重绘：当render tree中的一些元素需要更新属性，而这些属性只会影响元素的外观、风格而不会影响布局的，过程就叫做重绘。
+web页面的呈现ht">
+<meta property="og:updated_time" content="2017-02-17T07:25:49.179Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="The thought of creating the blog 第一次使用hexo搭建博客，虽然是在大牛搭用nodejs搭建好的壳子上去做，但是比较笨的我还是遇到了一些麻烦，在这记录一下，防止自己或者别人犯同样的错误。">
+<meta name="twitter:title" content="Repaint and Reflow">
+<meta name="twitter:description" content="回流和重绘是两种不同的机制，会样式的改变而对浏览器产生不同程度的影响。
+概念1、回流：当render tree中的一部分（全部）因为元素的规模尺寸、布局、隐藏等改变而需要重新的构建，这就叫做回流；每个页面至少需要一次回流，就是在页面第一次加载的时候。2、重绘：当render tree中的一些元素需要更新属性，而这些属性只会影响元素的外观、风格而不会影响布局的，过程就叫做重绘。
+web页面的呈现ht">
 
 
 
@@ -114,10 +120,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/10/01/thought/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/02/17/repaint-and-reflow/"/>
 
 
-  <title> Hexo | Carlton.blog </title>
+  <title> Repaint and Reflow | Carlton.blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -249,7 +255,7 @@
             
             
               
-                Hexo
+                Repaint and Reflow
               
             
           </h1>
@@ -261,8 +267,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-01T22:39:38+08:00" content="2016-10-01">
-              2016-10-01
+            <time itemprop="dateCreated" datetime="2017-02-17T11:38:48+08:00" content="2017-02-17">
+              2017-02-17
             </time>
           </span>
 
@@ -272,8 +278,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/01/thought/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/01/thought/" itemprop="commentsCount"></span>
+                <a href="/2017/02/17/repaint-and-reflow/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/17/repaint-and-reflow/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -296,12 +302,9 @@
       
 
       
-        <h2 id="The-thought-of-creating-the-blog"><a href="#The-thought-of-creating-the-blog" class="headerlink" title="The thought of creating the blog"></a>The thought of creating the blog</h2><p> 第一次使用hexo搭建博客，虽然是在大牛搭用nodejs搭建好的壳子上去做，但是比较笨的我还是遇到了一些麻烦，在这记录一下，防止自己或者别人犯同样的错误。<br><a id="more"></a><br>简单说一下Hexo的安装步骤</p>
-<p>1.安装node和注册git<br>2.利用node的npm包管理器下载hexo<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo -g   //全局安装</div></pre></td></tr></table></figure></p>
-<p>3.然后新建一个你以后要存放你的博客日志的文件夹，并且初始化<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo init blog   //我自己起名文件夹的名字叫做blog，这个可以随便起</div></pre></td></tr></table></figure></p>
-<p>4.安装依赖<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install   //会在目录下安装一个node_modules文件</div></pre></td></tr></table></figure></p>
-<p>5.那么hexo就安装好了，接下来启动服务，在本地查看（在这一步的时候很容易出现打不开的现象，一定要确定依赖安装好了，而且打开浏览器出现问题之后尝试重新启动一下服务）<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo server   //或者是简写成为 hexo s</div></pre></td></tr></table></figure></p>
-<p>6.完成上面的步骤后会默认的打开本地4000端口，只要在浏览器中输入localhost:4000 ,那么就能看到你所搭建的一个简单的博客的页面了<br>7.在github上新建一个仓库，注意一点：命名的时候要是github.name+”.”+github+”.”+io 这种格式才可以<br>8.修改blog中的_config.yml配置文件：<br>        deploy：<br>            type：<br>        修改为<br>        deploy:<br>          type: git         //这个地方注意一定是git，且前面都有一个空格<br>          repo: <a href="https://github.com/zhaoquanjun/zhaoquanjun.github.io.git" target="_blank" rel="external">https://github.com/zhaoquanjun/zhaoquanjun.github.io.git</a><br>          branch: master<br>9.修改好之后输入命令,那么本地的博客就被上传到github上了，通过”zhaoquanjun.github.io”(把名字换成自己的github命即可)访问自己放在github上的博客了<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo deploy</div></pre></td></tr></table></figure></p>
+        <p>回流和重绘是两种不同的机制，会样式的改变而对浏览器产生不同程度的影响。</p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>1、回流：当render tree中的一部分（全部）因为元素的规模尺寸、布局、隐藏等改变而需要重新的构建，这就叫做回流；每个页面至少需要一次回流，就是在页面第一次加载的时候。<br>2、重绘：当render tree中的一些元素需要更新属性，而这些属性只会影响元素的外观、风格而不会影响布局的，过程就叫做重绘。</p>
+<h2 id="web页面的呈现html-css的大体流程"><a href="#web页面的呈现html-css的大体流程" class="headerlink" title="web页面的呈现html+css的大体流程"></a>web页面的呈现html+css的大体流程</h2><p>1、浏览器把获取的html代码解析成一个DOM树，html中的每个tag都是DOM树中的一个节点，根节点就是我们常用的document对象；DOM树里包含了所有的html标签，包括了display：none（隐藏），还有JS动态添加的元素等。<br>2、浏览器把所有的样式（用户定义的css和用户代理）解析成样式结构体，在解析的过程中会去掉浏览器不能识别的样式（比如IE会去掉-moz开头的样式，FF会去掉_开头的样式）。<br>3、DOM tree 和样式结构组合后形成 render tree ；render tree 类似于<br>DOM ree ，但是区别很大，render tree 能识别样式，其中的每个节点都有自己的style，而且 render tree 中不包含隐藏的节点（比如disolay：none；和head节点），因为这些节点不会用于呈现，并且也不会影响呈现的，所以是不会包含到 render tree 中的。<strong>注意：visibility：hidden 还是会包含到 render tree 中的，因为他虽然是隐藏的，但是还是占有位置空间的。</strong><br>4、一旦 render tree 构建完毕后，浏览器就可以根据他来绘制页面了。<br>    详图见：<a href="http://css88.b0.upaiyun.com/css88/2014/08/8_1.jpg" target="_blank" rel="external">http://css88.b0.upaiyun.com/css88/2014/08/8_1.jpg</a></p>
 
       
     </div>
@@ -324,7 +327,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag">#hexo</a>
+            <a href="/tags/重绘和回流/" rel="tag">#重绘和回流</a>
           
         </div>
       
@@ -333,13 +336,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/11/25/Object-assign/" rel="next" title="Object.assign">
+                <i class="fa fa-chevron-left"></i> Object.assign
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/09/前端基础知识/" rel="prev" title="前端基础知识">
-                前端基础知识 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -365,8 +368,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/01/thought/"
-           data-title="Hexo" data-url="http://yoursite.com/2016/10/01/thought/">
+      <div class="ds-thread" data-thread-key="2017/02/17/repaint-and-reflow/"
+           data-title="Repaint and Reflow" data-url="http://yoursite.com/2017/02/17/repaint-and-reflow/">
       </div>
     
   </div>
@@ -450,7 +453,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-thought-of-creating-the-blog"><span class="nav-number">1.</span> <span class="nav-text">The thought of creating the blog</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web页面的呈现html-css的大体流程"><span class="nav-number">2.</span> <span class="nav-text">web页面的呈现html+css的大体流程</span></a></li></ol></div>
             
           </div>
         </section>
