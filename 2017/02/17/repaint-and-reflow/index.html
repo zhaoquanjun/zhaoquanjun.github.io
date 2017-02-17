@@ -84,22 +84,16 @@
 
 
 
-<meta name="description" content="回流和重绘是两种不同的机制，会样式的改变而对浏览器产生不同程度的影响。
-概念1、回流：当render tree中的一部分（全部）因为元素的规模尺寸、布局、隐藏等改变而需要重新的构建，这就叫做回流；每个页面至少需要一次回流，就是在页面第一次加载的时候。2、重绘：当render tree中的一些元素需要更新属性，而这些属性只会影响元素的外观、风格而不会影响布局的，过程就叫做重绘。
-web页面的呈现ht">
+<meta name="description" content="回流和重绘是两种不同的机制，会样式的改变而对浏览器产生不同程度的影响。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Repaint and Reflow">
 <meta property="og:url" content="http://yoursite.com/2017/02/17/repaint-and-reflow/index.html">
 <meta property="og:site_name" content="Carlton.blog">
-<meta property="og:description" content="回流和重绘是两种不同的机制，会样式的改变而对浏览器产生不同程度的影响。
-概念1、回流：当render tree中的一部分（全部）因为元素的规模尺寸、布局、隐藏等改变而需要重新的构建，这就叫做回流；每个页面至少需要一次回流，就是在页面第一次加载的时候。2、重绘：当render tree中的一些元素需要更新属性，而这些属性只会影响元素的外观、风格而不会影响布局的，过程就叫做重绘。
-web页面的呈现ht">
-<meta property="og:updated_time" content="2017-02-17T07:25:49.179Z">
+<meta property="og:description" content="回流和重绘是两种不同的机制，会样式的改变而对浏览器产生不同程度的影响。">
+<meta property="og:updated_time" content="2017-02-17T07:33:57.101Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Repaint and Reflow">
-<meta name="twitter:description" content="回流和重绘是两种不同的机制，会样式的改变而对浏览器产生不同程度的影响。
-概念1、回流：当render tree中的一部分（全部）因为元素的规模尺寸、布局、隐藏等改变而需要重新的构建，这就叫做回流；每个页面至少需要一次回流，就是在页面第一次加载的时候。2、重绘：当render tree中的一些元素需要更新属性，而这些属性只会影响元素的外观、风格而不会影响布局的，过程就叫做重绘。
-web页面的呈现ht">
+<meta name="twitter:description" content="回流和重绘是两种不同的机制，会样式的改变而对浏览器产生不同程度的影响。">
 
 
 
@@ -302,7 +296,7 @@ web页面的呈现ht">
       
 
       
-        <p>回流和重绘是两种不同的机制，会样式的改变而对浏览器产生不同程度的影响。</p>
+        <p>回流和重绘是两种不同的机制，会样式的改变而对浏览器产生不同程度的影响。<br><a id="more"></a></p>
 <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>1、回流：当render tree中的一部分（全部）因为元素的规模尺寸、布局、隐藏等改变而需要重新的构建，这就叫做回流；每个页面至少需要一次回流，就是在页面第一次加载的时候。<br>2、重绘：当render tree中的一些元素需要更新属性，而这些属性只会影响元素的外观、风格而不会影响布局的，过程就叫做重绘。</p>
 <h2 id="web页面的呈现html-css的大体流程"><a href="#web页面的呈现html-css的大体流程" class="headerlink" title="web页面的呈现html+css的大体流程"></a>web页面的呈现html+css的大体流程</h2><p>1、浏览器把获取的html代码解析成一个DOM树，html中的每个tag都是DOM树中的一个节点，根节点就是我们常用的document对象；DOM树里包含了所有的html标签，包括了display：none（隐藏），还有JS动态添加的元素等。<br>2、浏览器把所有的样式（用户定义的css和用户代理）解析成样式结构体，在解析的过程中会去掉浏览器不能识别的样式（比如IE会去掉-moz开头的样式，FF会去掉_开头的样式）。<br>3、DOM tree 和样式结构组合后形成 render tree ；render tree 类似于<br>DOM ree ，但是区别很大，render tree 能识别样式，其中的每个节点都有自己的style，而且 render tree 中不包含隐藏的节点（比如disolay：none；和head节点），因为这些节点不会用于呈现，并且也不会影响呈现的，所以是不会包含到 render tree 中的。<strong>注意：visibility：hidden 还是会包含到 render tree 中的，因为他虽然是隐藏的，但是还是占有位置空间的。</strong><br>4、一旦 render tree 构建完毕后，浏览器就可以根据他来绘制页面了。<br>    详图见：<a href="http://css88.b0.upaiyun.com/css88/2014/08/8_1.jpg" target="_blank" rel="external">http://css88.b0.upaiyun.com/css88/2014/08/8_1.jpg</a></p>
 
