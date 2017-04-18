@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="hexo," />
+  <meta name="keywords" content="require.js," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="The thought of creating the blog 第一次使用hexo搭建博客，虽然是在大牛搭用nodejs搭建好的壳子上去做，但是比较笨的我还是遇到了一些麻烦，在这记录一下，防止自己或者别人犯同样的错误。">
+<meta name="description" content="随着网站功能逐渐丰富，网页中的js也变得越来越复杂和臃肿，原有通过script标签来导入一个个的js文件这种方式已经不能满足现在互联网开发模式，我们需要团队协作、模块复用、单元测试等等一系列复杂的需求。RequireJS是一个非常小巧的JavaScript模块载入框架，是AMD规范最好的实现者之一。最新版本的RequireJS压缩后只有14K，堪称非常轻量。它还同时可以和其他的框架协同工作，使用R">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/2016/10/01/thought/index.html">
+<meta property="og:title" content="require.js 入门">
+<meta property="og:url" content="http://yoursite.com/2017/04/18/require-js-入门/index.html">
 <meta property="og:site_name" content="Carlton.blog">
-<meta property="og:description" content="The thought of creating the blog 第一次使用hexo搭建博客，虽然是在大牛搭用nodejs搭建好的壳子上去做，但是比较笨的我还是遇到了一些麻烦，在这记录一下，防止自己或者别人犯同样的错误。">
-<meta property="og:updated_time" content="2016-10-20T05:41:53.291Z">
+<meta property="og:description" content="随着网站功能逐渐丰富，网页中的js也变得越来越复杂和臃肿，原有通过script标签来导入一个个的js文件这种方式已经不能满足现在互联网开发模式，我们需要团队协作、模块复用、单元测试等等一系列复杂的需求。RequireJS是一个非常小巧的JavaScript模块载入框架，是AMD规范最好的实现者之一。最新版本的RequireJS压缩后只有14K，堪称非常轻量。它还同时可以和其他的框架协同工作，使用R">
+<meta property="og:updated_time" content="2017-04-18T01:45:52.590Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="The thought of creating the blog 第一次使用hexo搭建博客，虽然是在大牛搭用nodejs搭建好的壳子上去做，但是比较笨的我还是遇到了一些麻烦，在这记录一下，防止自己或者别人犯同样的错误。">
+<meta name="twitter:title" content="require.js 入门">
+<meta name="twitter:description" content="随着网站功能逐渐丰富，网页中的js也变得越来越复杂和臃肿，原有通过script标签来导入一个个的js文件这种方式已经不能满足现在互联网开发模式，我们需要团队协作、模块复用、单元测试等等一系列复杂的需求。RequireJS是一个非常小巧的JavaScript模块载入框架，是AMD规范最好的实现者之一。最新版本的RequireJS压缩后只有14K，堪称非常轻量。它还同时可以和其他的框架协同工作，使用R">
 
 
 
@@ -114,10 +114,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/10/01/thought/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/04/18/require-js-入门/"/>
 
 
-  <title> Hexo | Carlton.blog </title>
+  <title> require.js 入门 | Carlton.blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -249,7 +249,7 @@
             
             
               
-                Hexo
+                require.js 入门
               
             
           </h1>
@@ -261,8 +261,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-01T22:39:38+08:00" content="2016-10-01">
-              2016-10-01
+            <time itemprop="dateCreated" datetime="2017-04-18T09:33:02+08:00" content="2017-04-18">
+              2017-04-18
             </time>
           </span>
 
@@ -272,8 +272,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/01/thought/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/01/thought/" itemprop="commentsCount"></span>
+                <a href="/2017/04/18/require-js-入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/18/require-js-入门/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -296,13 +296,10 @@
       
 
       
-        <h2 id="The-thought-of-creating-the-blog"><a href="#The-thought-of-creating-the-blog" class="headerlink" title="The thought of creating the blog"></a>The thought of creating the blog</h2><p> 第一次使用hexo搭建博客，虽然是在大牛搭用nodejs搭建好的壳子上去做，但是比较笨的我还是遇到了一些麻烦，在这记录一下，防止自己或者别人犯同样的错误。<br><a id="more"></a><br>简单说一下Hexo的安装步骤</p>
-<p>1.安装node和注册git<br>2.利用node的npm包管理器下载hexo<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo -g   //全局安装</div></pre></td></tr></table></figure></p>
-<p>3.然后新建一个你以后要存放你的博客日志的文件夹，并且初始化<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo init blog   //我自己起名文件夹的名字叫做blog，这个可以随便起</div></pre></td></tr></table></figure></p>
-<p>4.安装依赖<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install   //会在目录下安装一个node_modules文件</div></pre></td></tr></table></figure></p>
-<p>5.那么hexo就安装好了，接下来启动服务，在本地查看（在这一步的时候很容易出现打不开的现象，一定要确定依赖安装好了，而且打开浏览器出现问题之后尝试重新启动一下服务）<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo server   //或者是简写成为 hexo s</div></pre></td></tr></table></figure></p>
-<p>6.完成上面的步骤后会默认的打开本地4000端口，只要在浏览器中输入localhost:4000 ,那么就能看到你所搭建的一个简单的博客的页面了<br>7.在github上新建一个仓库，注意一点：命名的时候要是github.name+”.”+github+”.”+io 这种格式才可以<br>8.修改blog中的_config.yml配置文件：<br>        deploy：<br>            type：<br>        修改为<br>        deploy:<br>          type: git         //这个地方注意一定是git，且前面都有一个空格<br>          repo: <a href="https://github.com/zhaoquanjun/zhaoquanjun.github.io.git" target="_blank" rel="external">https://github.com/zhaoquanjun/zhaoquanjun.github.io.git</a><br>          branch: master<br>9.修改好之后输入命令,那么本地的博客就被上传到github上了，通过”zhaoquanjun.github.io”(把名字换成自己的github命即可)访问自己放在github上的博客了<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo deploy</div></pre></td></tr></table></figure></p>
-
+        <p>随着网站功能逐渐丰富，网页中的js也变得越来越复杂和臃肿，原有通过script标签来导入一个个的js文件这种方式已经不能满足现在互联网开发模式，我们需要团队协作、模块复用、单元测试等等一系列复杂的需求。<br>RequireJS是一个非常小巧的JavaScript模块载入框架，是AMD规范最好的实现者之一。最新版本的RequireJS压缩后只有14K，堪称非常轻量。它还同时可以和其他的框架协同工作，使用RequireJS必将使您的前端代码质量得以提升。<br><a id="more"></a></p>
+<h2 id="require-能带来的好处"><a href="#require-能带来的好处" class="headerlink" title="require 能带来的好处"></a>require 能带来的好处</h2><p>官方对requirejs的描述：<br>RequireJS is a JavaScript file and module loader. It is optimized for in-browser use, but it can be used in other JavaScript environments, like Rhino and Node. Using a modular script loader like RequireJS will improve the speed and quality of your code.<br>大致意思：在浏览器中可以作为js文件的模块加载器，也可以用在Node和Rhino环境，balabala…。这段话描述了requirejs的基本功能”模块化加载”，什么是模块化加载</p>
+<h2 id="引入一个例子"><a href="#引入一个例子" class="headerlink" title="引入一个例子"></a>引入一个例子</h2><h3 id="HTML文件"><a href="#HTML文件" class="headerlink" title="HTML文件"></a>HTML文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line">    &lt;head&gt;</div><div class="line">        &lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">        &lt;script type=&quot;text/javascript&quot; src=&quot;require.js&quot;&gt;&lt;/script&gt;</div><div class="line">        &lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">            require([&apos;a&apos;]);</div><div class="line">        &lt;/script&gt;</div><div class="line">    &lt;/head&gt;</div><div class="line">    &lt;body&gt;</div><div class="line">    &lt;div&gt;引入&lt;/div&gt;</div><div class="line">    &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<h3 id="JS文件"><a href="#JS文件" class="headerlink" title="JS文件"></a>JS文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function fn()&#123;</div><div class="line">    alert(&apos;success loaded!&apos;)</div><div class="line">&#125;;</div><div class="line">fn();</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -324,7 +321,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag">#hexo</a>
+            <a href="/tags/require-js/" rel="tag">#require.js</a>
           
         </div>
       
@@ -333,13 +330,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/02/17/repaint-and-reflow/" rel="next" title="Repaint and Reflow">
+                <i class="fa fa-chevron-left"></i> Repaint and Reflow
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/09/前端基础知识/" rel="prev" title="前端基础知识">
-                前端基础知识 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -365,8 +362,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/01/thought/"
-           data-title="Hexo" data-url="http://yoursite.com/2016/10/01/thought/">
+      <div class="ds-thread" data-thread-key="2017/04/18/require-js-入门/"
+           data-title="require.js 入门" data-url="http://yoursite.com/2017/04/18/require-js-入门/">
       </div>
     
   </div>
@@ -450,7 +447,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-thought-of-creating-the-blog"><span class="nav-number">1.</span> <span class="nav-text">The thought of creating the blog</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#require-能带来的好处"><span class="nav-number">1.</span> <span class="nav-text">require 能带来的好处</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引入一个例子"><span class="nav-number">2.</span> <span class="nav-text">引入一个例子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML文件"><span class="nav-number">2.1.</span> <span class="nav-text">HTML文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JS文件"><span class="nav-number">2.2.</span> <span class="nav-text">JS文件</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
