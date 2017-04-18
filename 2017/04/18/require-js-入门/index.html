@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/04/18/require-js-入门/index.html">
 <meta property="og:site_name" content="Carlton.blog">
 <meta property="og:description" content="随着网站功能逐渐丰富，网页中的js也变得越来越复杂和臃肿，原有通过script标签来导入一个个的js文件这种方式已经不能满足现在互联网开发模式，我们需要团队协作、模块复用、单元测试等等一系列复杂的需求。RequireJS是一个非常小巧的JavaScript模块载入框架，是AMD规范最好的实现者之一。最新版本的RequireJS压缩后只有14K，堪称非常轻量。它还同时可以和其他的框架协同工作，使用R">
-<meta property="og:updated_time" content="2017-04-18T01:45:52.590Z">
+<meta property="og:updated_time" content="2017-04-18T01:51:41.580Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="require.js 入门">
 <meta name="twitter:description" content="随着网站功能逐渐丰富，网页中的js也变得越来越复杂和臃肿，原有通过script标签来导入一个个的js文件这种方式已经不能满足现在互联网开发模式，我们需要团队协作、模块复用、单元测试等等一系列复杂的需求。RequireJS是一个非常小巧的JavaScript模块载入框架，是AMD规范最好的实现者之一。最新版本的RequireJS压缩后只有14K，堪称非常轻量。它还同时可以和其他的框架协同工作，使用R">
@@ -300,6 +300,8 @@
 <h2 id="require-能带来的好处"><a href="#require-能带来的好处" class="headerlink" title="require 能带来的好处"></a>require 能带来的好处</h2><p>官方对requirejs的描述：<br>RequireJS is a JavaScript file and module loader. It is optimized for in-browser use, but it can be used in other JavaScript environments, like Rhino and Node. Using a modular script loader like RequireJS will improve the speed and quality of your code.<br>大致意思：在浏览器中可以作为js文件的模块加载器，也可以用在Node和Rhino环境，balabala…。这段话描述了requirejs的基本功能”模块化加载”，什么是模块化加载</p>
 <h2 id="引入一个例子"><a href="#引入一个例子" class="headerlink" title="引入一个例子"></a>引入一个例子</h2><h3 id="HTML文件"><a href="#HTML文件" class="headerlink" title="HTML文件"></a>HTML文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line">    &lt;head&gt;</div><div class="line">        &lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">        &lt;script type=&quot;text/javascript&quot; src=&quot;require.js&quot;&gt;&lt;/script&gt;</div><div class="line">        &lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">            require([&apos;a&apos;]);</div><div class="line">        &lt;/script&gt;</div><div class="line">    &lt;/head&gt;</div><div class="line">    &lt;body&gt;</div><div class="line">    &lt;div&gt;引入&lt;/div&gt;</div><div class="line">    &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
 <h3 id="JS文件"><a href="#JS文件" class="headerlink" title="JS文件"></a>JS文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function fn()&#123;</div><div class="line">    alert(&apos;success loaded!&apos;)</div><div class="line">&#125;;</div><div class="line">fn();</div></pre></td></tr></table></figure>
+<p>–上面的例子在弹出框出现之前已经完成了对HTML内容的加载，也就是说明js文件并没有阻塞HTML文件的加载，虽然他是在上面的，而且a.js内容也完整的体现在了页面中，说明使用require.js加载a.js文件是成功的，那么require.js的初步试用就完成了<br>–那么也就体现出了require.js加载文件的优点：<br>1.防止js加载阻塞页面的加载；<br>2.使用程序加载js防止出现了丑陋的加载无限多个js文件这种情况在页面中体现。</p>
+
       
     </div>
 
